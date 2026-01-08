@@ -1,0 +1,64 @@
+{
+  "name": "kubu-hai",
+  "version": "0.0.1",
+  "description": "Deploy an actions artifact to GitHub Pages (TypeScript)",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "all": "npm run format && npm run lint && npm run build && npm run test && npm run coverage-badge",
+    "build": "tsc && ncc build dist/index.js -o dist --source-map --license licenses.txt",
+    "prepare": "ncc build src/index.ts -o dist --source-map",
+    "test": "jest",
+    "lint": "eslint --ext .ts src",
+    "lint:check": "eslint . --ext .ts",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "coverage-badge": "make-coverage-badge --output-path ./coverage_badge.svg"
+  },
+  "dependencies": {
+    "@actions/artifact": "^2.1.11",
+    "@actions/core": "^1.11.1",
+    "@actions/github": "^6.0.0",
+    "@octokit/request-error": "^5.0.1",
+    "http-status-messages": "^1.1.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.4",
+    "@types/node": "^20.11.30",
+    "@vercel/ncc": "^0.38.3",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^10.0.0",
+    "eslint-plugin-github": "^6.0.0",
+    "jest": "^29.7.0",
+    "make-coverage-badge": "^1.2.0",
+    "nock": "^13.5.6",
+    "prettier": "^3.4.1",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.4.5",
+    "undici": "^7.0.0"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "coverageReporters": ["json-summary", "text", "lcov"],
+    "collectCoverage": true,
+    "collectCoverageFrom": ["src/**/*.ts"],
+    "coverageThreshold": {
+      "global": {
+        "lines": 70,
+        "statements": 70
+      }
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/actions/deploy-pages.git"
+  },
+  "keywords": ["GitHub", "Pages", "TypeScript", "Actions"],
+  "author": "kubulee",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/actions/deploy-pages/issues"
+  },
+  "homepage": "https://github.com/actions/deploy-pages#readme"
+}
