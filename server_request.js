@@ -1,8 +1,8 @@
 const nock = require('nock');
 
-nock('http://example.com', {
+nock('http://localhost:8000', {
   reqheaders: {
-    'authorization': 'AIzaSyAvrxOyAVzPVcnzxuD0mjKVDyS2bNWfC10',
+    'authorization': '',
     'content-type': 'application/json'
   }
 })
